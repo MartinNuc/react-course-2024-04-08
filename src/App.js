@@ -1,16 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
 import { Joke } from './Joke';
 import { AlbumVoting } from './AlbumVoting';
+import { UserInfoPane } from './UserInfoPane';
+import { UserContextProvider } from './user-context';
 
 function App() {
   return (
-    <div className="App">
+    <UserContextProvider>
+      <div className="App">
+        <UserInfoPane />
+        <AlbumVoting />
 
-      <AlbumVoting />
-
-      <Joke />
-    </div>
+        <Joke />
+      </div>
+    </UserContextProvider>
   );
 }
 
