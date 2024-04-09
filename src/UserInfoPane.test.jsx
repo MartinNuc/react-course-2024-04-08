@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { UserInfoPane } from './UserInfoPane';
 import { UserContextProvider } from './user-context';
+import { act } from 'react-dom/test-utils';
 
 function setupTest() {
   function renderTest() {
