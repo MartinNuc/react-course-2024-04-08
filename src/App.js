@@ -3,6 +3,7 @@ import { Joke } from './Joke';
 import { AlbumVoting } from './AlbumVoting';
 import { UserInfoPane } from './UserInfoPane';
 import { UserContextProvider } from './user-context';
+import {JokeFetcher} from './render-props/joke-fetcher'
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
         <UserInfoPane />
         <AlbumVoting />
 
-        <Joke />
+        <JokeFetcher>
+          {({isLoading, joke}) => <p>{isLoading ? 'Loading...' : joke}</p>}
+        </JokeFetcher>
       </div>
     </UserContextProvider>
   );
