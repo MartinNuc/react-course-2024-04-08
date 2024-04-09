@@ -1,5 +1,6 @@
 import {doNTimes} from './do-n-times';
 
+
 describe('doNTimes', () => {
 
   it('calls function 3 times', () => {
