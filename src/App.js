@@ -3,20 +3,29 @@ import { Joke } from './Joke';
 import { AlbumVoting } from './AlbumVoting';
 import { UserInfoPane } from './UserInfoPane';
 import { UserContextProvider } from './user-context';
-import {JokeFetcher} from './render-props/joke-fetcher'
+import { JokeFetcher } from './render-props/joke-fetcher'
+import { ThrowComponent } from './error-boundary/throw-component';
+import { ErrorBoundary } from './error-boundary/error-boundary';
 
 function App() {
   return (
-    <UserContextProvider>
-      <div className="App">
-        <UserInfoPane />
-        <AlbumVoting />
+    <ErrorBoundary>
+      <UserContextProvider>
+        <div className="App">
 
-        <JokeFetcher>
-          {({isLoading, joke}) => <p>{isLoading ? 'Loading...' : joke}</p>}
-        </JokeFetcher>
-      </div>
-    </UserContextProvider>
+          <ErrorBoundary>
+            <ThrowComponent />
+          </ErrorBoundary>
+
+          <UserInfoPane />
+          <AlbumVoting />
+
+          <JokeFetcher>
+            {({ isLoading, joke }) => <p>{isLoading ? 'Loading...' : joke}</p>}
+          </JokeFetcher>
+        </div>
+      </UserContextProvider>
+    </ErrorBoundary>
   );
 }
 
