@@ -1,9 +1,9 @@
-
-import {createBrowserRouter,Outlet } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
 import { AlbumVoting } from '../AlbumVoting';
-import {Layout} from './layout'
+import { Layout } from './layout';
 import { Categories } from '../jokes/categories';
 import { Joke } from '../jokes/joke';
+import { Suspense } from 'react';
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: 'votes',
-        element: <AlbumVoting />
+        element: <AlbumVoting />,
       },
       {
         path: 'categories',
@@ -24,10 +24,14 @@ export const router = createBrowserRouter([
           },
           {
             path: ':category',
-            element: <Joke />
-          }
-        ]
-      }
-    ]
-  }
+            element: (
+              <Suspense fallback={<div>Loading with Suspense, wait ...</div>}>
+                <Joke />
+              </Suspense>
+            ),
+          },
+        ],
+      },
+    ],
+  },
 ]);
