@@ -1,13 +1,14 @@
 import {useUser} from './user-context';
 
 export const CurrentUserInfo = () => {
-  const { user, logout } = useUser();
+  const { user, timeLeft, logout } = useUser();
 
   if (!user) { return null; }
 
   return <div>
-    username: {user.username}
-    email: {user.email}
+    <div>username: {user.username}</div>
+    <div>email: {user.email}</div>
+    <div>Session expires in {timeLeft}s</div>
     <button onClick={logout}>Logout</button>
   </div>
 }

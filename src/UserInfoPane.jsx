@@ -3,8 +3,7 @@ import { CurrentUserInfo } from './CurrentUserInfo';
 import { useUser } from './user-context';
 
 export function UserInfoPane() {
-  const contextValue = useUser();
-  const {user} = contextValue;
+  const {user} = useUser();
 
   return <div>{user ? <CurrentUserInfo /> : <LoginForm />}</div>;
 }
